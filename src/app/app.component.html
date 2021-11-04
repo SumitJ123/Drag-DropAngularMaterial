@@ -1,0 +1,48 @@
+<mat-spinner *ngIf="loading"></mat-spinner>
+<ng-container cdkDropListGroup>
+	<div class="example-container">
+		<h2>First Time Component Use</h2>
+
+		<div cdkDropList #sidebarList="cdkDropList" [cdkDropListData]="sidebar" cdkDropListConnectedTo="[mainList]"
+			class="example-list" (cdkDropListDropped)="drop($event)">
+			<div class="example-box" appResizable cdkDrag [cdkDragDisabled]="dragShow" matTooltip="Login Component"
+				aria-label="Button that displays a tooltip when focused or hovered over">
+				<app-login></app-login>
+			</div>
+			<div class="example-box" appResizable cdkDrag [cdkDragDisabled]="dragShow" matTooltip="Header Component"
+				aria-label="Button that displays a tooltip when focused or hovered over">
+				<app-header></app-header>
+			</div>
+		
+		</div>
+	</div>
+
+	<div class="example-container">
+		<h2>Reuse Component</h2>
+
+		<div cdkDropList #mainList="cdkDropList" [cdkDropListData]="main" cdkDropListConnectedTo="[sidebarList]"
+			class="example-list" (cdkDropListDropped)="drop($event)">
+			<div class="example-box" appResizable  cdkDrag [cdkDragDisabled]="dragShow" matTooltip="Header Component"
+				aria-label="Button that displays a tooltip when focused or hovered over">
+				<app-header></app-header>
+			</div>
+			<div class="example-box" appResizable  cdkDrag [cdkDragDisabled]="dragShow" matTooltip="Login Component"
+				aria-label="Button that displays a tooltip when focused or hovered over">
+				<app-login></app-login>
+			</div>
+		</div>
+	</div>
+</ng-container>
+
+
+<div class="example-container" cdkDrag [cdkDragDisabled]="dragShow" matTooltip="Dashboard Component"
+	aria-label="Button that displays a tooltip when focused or hovered over">
+	<!-- <span>600px</span>
+  <span>450px</span> -->
+	<app-dashboard [width]="300" [height]="150" [left]="100" [top]="100"></app-dashboard>
+</div>
+<div class="example-container">
+	<button type="button" (click)="disabledDragDrop()" mat-button color="warn">Toggle the Drag and Drop</button>
+</div>
+
+<router-outlet></router-outlet>
